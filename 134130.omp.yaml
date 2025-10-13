@@ -48,3 +48,4 @@ blocks:
         template: " {{ .FormattedMs }} "
         properties:
           fetch_status: false
+          style: round
