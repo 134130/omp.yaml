@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+final_space: true
+version: 3
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: status
+        style: diamond
+        trailing_diamond: 
+        foreground: "7"
+        background: "1"
+        template: "{{ if ne .Code 0 }}✘{{ end }} "
+        properties:
+          always_enabled: false
+      - type: text
+        style: diamond
+        trailing_diamond: 
+        foreground: "15"
+        background: "135"
+        template: " 🌈 "
+      - type: text
+        style: diamond
+        trailing_diamond: 
+        foreground: "0"
+        background: "141"
+        template: " {{ .UserName }} "
+      - type: path
+        style: diamond
+        trailing_diamond: 
+        foreground: "0"
+        background: "147"
+        properties:
+          style: folder
+      - type: git
+        style: diamond
+        trailing_diamond: 
+        foreground: "0"
+        background: "7"
+        template: " {{ .HEAD }} {{ if or (.Working.Changed) (.Staging.Changed) }}<1>✘</>{{ else }}<2>✔</>{{ end }} "
+        properties:
+          fetch_status: true
