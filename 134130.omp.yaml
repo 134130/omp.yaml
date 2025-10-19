@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 final_space: true
 version: 3
+enable_cursor_positioning: true
 blocks:
   - type: prompt
     alignment: left
@@ -8,17 +9,19 @@ blocks:
       - type: status
         style: diamond
         trailing_diamond: 
-        foreground: "7"
+        foreground: "255"
         background: "1"
         template: "{{ if ne .Code 0 }}✘{{ end }} "
         properties:
           always_enabled: false
-      - type: text
+      - type: status
         style: diamond
         trailing_diamond: 
         foreground: "15"
         background: "135"
-        template: " 🌈 "
+        template: "{{ if ne .Code 0 }} {{ end }}🌈 "
+        properties:
+          always_enabled: true
       - type: text
         style: diamond
         trailing_diamond: 
@@ -36,7 +39,7 @@ blocks:
         style: diamond
         trailing_diamond: 
         foreground: "0"
-        background: "7"
+        background: "255"
         template: " {{ .HEAD }} {{ if or (.Working.Changed) (.Staging.Changed) }}<1>✘</>{{ else }}<2>✔</>{{ end }} "
         properties:
           fetch_status: true
@@ -49,3 +52,13 @@ blocks:
         properties:
           fetch_status: false
           style: round
+  - type: prompt
+    alignment: left
+    newline: true
+    force: true
+    segments:
+      - type: text
+        style: plain
+        foreground: "10"
+        background: "0"
+        template: "$"
